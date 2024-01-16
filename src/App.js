@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
 
-function App() {
+const theme = createTheme({
+  typography: {
+    fontFamily: "Roboto, sans-serif",
+  },
+});
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          John Lander
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Dashboard />}></Route>
+            <Route path="/settings" element={<Settings />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </>
   );
-}
+};
 
 export default App;
